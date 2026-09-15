@@ -7,13 +7,13 @@ export const SOCIAL_ACCOUNTS = [
   {
     id: "xiaohongshu",
     label: "小红书",
-    account: "德尔菲秘仪社",
+    account: "Delphic-秘仪社",
     icon: "/icons/xiaohongshu.svg",
   },
   {
     id: "bilibili",
     label: "Bilibili",
-    account: "德尔菲秘仪社",
+    account: "Delphic-秘仪社",
     icon: "/icons/bilibili.svg",
   },
   {
