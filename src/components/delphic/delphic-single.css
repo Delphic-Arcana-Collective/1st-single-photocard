@@ -1,0 +1,227 @@
+/* ===== Front ===== */
+.delphic-front {
+  position: relative;
+  height: 100%;
+  background: transparent;
+  overflow: visible;
+}
+
+.delphic-front__stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-5.5%);
+}
+
+.delphic-front__art {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  background: transparent;
+  z-index: 1;
+  /* 允许锁链伸出图区，不被裁掉 */
+  overflow: visible;
+}
+
+.delphic-front__art-img,
+.delphic-front__art img {
+  object-fit: contain !important;
+  object-position: center 36% !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  transform: scale(1.12) translateY(1%);
+  transform-origin: center 36%;
+}
+
+.delphic-front__footer {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35em;
+  width: 100%;
+  margin-top: 1.5%;
+  padding: 0 0 3.5%;
+  background: transparent;
+  /* 文字在上层；透明区域让锁链露出来 */
+  z-index: 2;
+  pointer-events: none;
+}
+
+.delphic-front__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 86%;
+}
+
+.delphic-front__logo-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* 原 logo 为黑字，暗底上反成浅色 */
+  filter: invert(1);
+}
+
+.delphic-front__label {
+  margin: 0;
+  width: 69%;
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: clamp(0.62rem, 2.8cqi, 0.95rem);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.delphic-front__label-rule {
+  flex: 1 1 auto;
+  height: 1.5px;
+  min-width: 0.75rem;
+  background: var(--ink);
+}
+
+.delphic-front__label-text {
+  flex: 0 0 auto;
+  background: transparent;
+  padding: 0;
+}
+
+/* ===== Back ===== */
+.delphic-back {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 8% 5% 4%;
+  gap: 0;
+  background: transparent;
+  color: var(--ink);
+}
+
+.delphic-back__tracks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85em;
+  padding-top: 2%;
+  text-align: left;
+  width: 100%;
+  flex: 0 0 auto;
+  container-type: inline-size;
+}
+
+.delphic-back__heading {
+  margin: 0;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 8.4cqi, 2.3rem);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.delphic-back__track {
+  margin: 0;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: clamp(1.16rem, 5.8cqi, 1.64rem);
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.delphic-back__spacer {
+  flex: 1 1 auto;
+  min-height: 4%;
+}
+
+.delphic-back__bottom {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: 100%;
+}
+
+.delphic-back__rule {
+  width: 96%;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--rule);
+  border: none;
+}
+
+.delphic-back__cta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3%;
+  width: 100%;
+  min-height: 0;
+  padding: 0 1.5% 1.5%;
+  container-type: inline-size;
+}
+
+.delphic-back__socials {
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.55em;
+  min-width: 0;
+}
+
+.delphic-back__social {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  min-width: 0;
+}
+
+.delphic-back__social-icon {
+  flex: 0 0 auto;
+  display: block;
+  width: clamp(1.1rem, 5.5cqi, 1.55rem);
+  height: clamp(1.1rem, 5.5cqi, 1.55rem);
+  background-color: var(--ink);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.delphic-back__social-id {
+  margin: 0;
+  min-width: 0;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: clamp(0.85rem, 4.2cqi, 1.2rem);
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delphic-back__qr {
+  flex: 0 0 auto;
+  width: clamp(9rem, 64cqi, 15rem);
+  aspect-ratio: 1;
+  padding: 0;
+  background: transparent;
+  border: none;
+  align-self: flex-end;
+}

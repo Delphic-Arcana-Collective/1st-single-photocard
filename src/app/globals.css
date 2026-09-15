@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --page-bg: #2a2420;
+  --card-bg: #1a1512;
+  --card-bg-image: url("/card-bg.png");
+  --ink: #f3ebe3;
+  --rule: #f3ebe3;
+}
+
+@theme inline {
+  --color-background: var(--page-bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-handwriting);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--ink);
+  /* Apple 用手札体；其它环境用霞鹜文楷（端正手写）+ Klee One */
+  --font-handwriting: "Hannotate SC", "Hannotate TC", "LXGW WenKai",
+    "霞鹜文楷", "Klee One", cursive, sans-serif;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+}
+
+.page-shell {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, #3a322c 0%, transparent 70%),
+    var(--page-bg);
+}
+
+.page-actions {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 5;
+}
+
+.export-btn {
+  appearance: none;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+.export-btn:hover {
+  background: #f5f5f5;
+}
+
+.export-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.hint {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: var(--font-handwriting);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: #cbbba8;
+  opacity: 0.85;
+  pointer-events: none;
+}
