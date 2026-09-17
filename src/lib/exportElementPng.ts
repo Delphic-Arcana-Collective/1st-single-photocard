@@ -8,14 +8,26 @@ const MIN_PIXEL_RATIO = 3;
 /** Stay under typical browser canvas dimension limits (~16384). */
 const MAX_PIXEL_RATIO = 6;
 
-function resolvePixelRatio(node: HTMLElement, requested?: number): number {
+function resolvePixelRatio(cssWidth: number, requested?: number): number {
   if (requested != null && requested > 0) return requested;
-  const cssWidth = Math.max(node.offsetWidth, 1);
   const targetPx = (A8_WIDTH_MM / 25.4) * TARGET_PRINT_DPI;
   return Math.min(
     MAX_PIXEL_RATIO,
-    Math.max(MIN_PIXEL_RATIO, Math.ceil(targetPx / cssWidth)),
+    Math.max(MIN_PIXEL_RATIO, Math.ceil(targetPx / Math.max(cssWidth, 1))),
   );
+}
+
+/**
+ * Prefer the A8 `.flip-card` box (has aspect-ratio). Face nodes are
+ * `position:absolute; inset:0` and distort if cloned without locked size.
+ */
+function measureExportBox(node: HTMLElement): { width: number; height: number } {
+  const card = node.closest(".flip-card") as HTMLElement | null;
+  const rect = (card ?? node).getBoundingClientRect();
+  return {
+    width: Math.max(1, Math.round(rect.width)),
+    height: Math.max(1, Math.round(rect.height)),
+  };
 }
 
 /** html-to-image console.errors on opaque cross-origin sheets (CDN without CORS, extensions). */
@@ -53,15 +65,16 @@ export async function exportElementPng(
   filename: string,
   options?: { pixelRatio?: number },
 ) {
-  const pixelRatio = resolvePixelRatio(node, options?.pixelRatio);
+  const { width, height } = measureExportBox(node);
+  const pixelRatio = resolvePixelRatio(width, options?.pixelRatio);
 
   // Pre-embed fonts, then skipFonts so toPng does not re-walk document.styleSheets.
-  // Our WenKai <link crossOrigin="anonymous"> makes that sheet readable; quieting
-  // covers remaining opaque sheets (browser extensions, etc.) that still log noise.
   const dataUrl = await withQuietedCssRulesErrors(async () => {
     const fontEmbedCSS = await getFontEmbedCSS(node);
     return toPng(node, {
       cacheBust: true,
+      width,
+      height,
       pixelRatio,
       skipAutoScale: true,
       skipFonts: true,
@@ -69,9 +82,18 @@ export async function exportElementPng(
       preferredFontFormat: "woff2",
       backgroundColor: undefined,
       style: {
-        transform: "none",
+        // Identity transform (not `none`) keeps containing-block for absolute kids.
+        // Clears back-face rotateY(180deg) without collapsing layout.
+        transform: "translate(0, 0)",
         position: "relative",
+        left: "0",
+        top: "0",
+        right: "auto",
+        bottom: "auto",
         inset: "auto",
+        width: `${width}px`,
+        height: `${height}px`,
+        margin: "0",
         boxShadow: "none",
       },
     });
