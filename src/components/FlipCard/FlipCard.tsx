@@ -11,7 +11,7 @@ import "./FlipCard.css";
 export type FlipCardProps = {
   front: ReactNode;
   back: ReactNode;
-  /** width:height, default 55/85 */
+  /** width:height, default A8 (52×74 mm) */
   aspectRatio?: `${number} / ${number}` | string;
   className?: string;
   flipped?: boolean;
@@ -33,7 +33,7 @@ function assignRef<T>(ref: Ref<T> | undefined, value: T | null) {
 export default function FlipCard({
   front,
   back,
-  aspectRatio = "55 / 85",
+  aspectRatio = "52 / 74",
   className,
   flipped: flippedProp,
   defaultFlipped = false,

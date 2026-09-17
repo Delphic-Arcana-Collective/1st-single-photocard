@@ -1,5 +1,6 @@
 .flip-card {
-  width: min(88vw, calc(92vh * 55 / 85));
+  /* A8: 52 × 74 mm */
+  width: min(88vw, calc(92vh * 52 / 74));
   perspective: 1600px;
   border: none;
   padding: 0;

@@ -98,102 +98,231 @@
 
 /* ===== Back ===== */
 .delphic-back {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 100%;
-  padding: 8% 5% 4%;
+  padding: 6% 0 5%;
   gap: 0;
   background: transparent;
   color: var(--ink);
+  container-type: size;
 }
 
 .delphic-back__tracks {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.85em;
-  padding-top: 2%;
-  text-align: left;
-  width: 100%;
   flex: 0 0 auto;
+  width: 100%;
+  padding: 0 6%;
+  box-sizing: border-box;
+  text-align: center;
   container-type: inline-size;
 }
 
-.delphic-back__heading {
+.delphic-back__title {
   margin: 0;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(1.7rem, 8.4cqi, 2.3rem);
+  font-size: clamp(2.2rem, 12cqi, 3.1rem);
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+.delphic-back__original {
+  margin: 0.4em 0 0;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: clamp(1rem, 5.4cqi, 1.4rem);
   letter-spacing: 0.04em;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  opacity: 0.82;
 }
 
-.delphic-back__track {
-  margin: 0;
-  font-family: var(--font-handwriting);
-  font-weight: 400;
-  font-size: clamp(1.16rem, 5.8cqi, 1.64rem);
-  line-height: 1.45;
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.delphic-back__spacer {
+/* 二维码 + 两侧波形：占满标题与下方文案之间的弹性空间并垂直居中 */
+.delphic-back__qr-stage {
+  --qr-accent: color-mix(in srgb, #c8c2ba 55%, transparent);
+  position: relative;
   flex: 1 1 auto;
-  min-height: 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0;
+  min-height: 0;
+  container-type: inline-size;
 }
 
-.delphic-back__bottom {
-  flex: 0 0 auto;
+/* 波形顶满左右边缘与二维码边框；自身微微下移，不影响下方流式布局 */
+.delphic-back__qr-cluster {
+  display: grid;
+  grid-template-columns: 1fr 40cqw 1fr;
+  align-items: center;
+  column-gap: 0;
+  width: 100%;
+  transform: translateY(4%);
+}
+
+.delphic-back__wave {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: clamp(3.25rem, 14cqw, 5.75rem);
+  color: var(--qr-accent);
+  pointer-events: none;
+  overflow: visible;
+  /* 对齐码区中线（略高于整块 Polaroid 几何中心） */
+  transform: translateY(-10%);
+}
+
+.delphic-back__wave--left,
+.delphic-back__wave--right {
+  align-self: center;
+}
+
+/*
+ * 纯羊皮纸：黑码直接落在纸面，无压暗层、无白底井。
+ */
+.delphic-back__qr-frame {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 40cqw;
+  max-width: 40cqw;
+  justify-self: center;
+  aspect-ratio: 1 / 1.18;
+  background-color: #bda887;
+  background-image: url("/parchment-warm.jpg?v=3");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(55, 40, 22, 0.28);
+  border-radius: 1.6cqi;
+  color: #1a1512;
+  container-type: inline-size;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 235, 200, 0.12),
+    0 0.3em 0.85em rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.delphic-back__qr-inner {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  padding: 5.5cqw 5.5cqw 0;
+  background: transparent;
+}
+
+.delphic-back__qr {
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border-radius: 1.6cqi;
+  overflow: hidden;
+}
+
+.delphic-back__qr-svg {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 92%;
+  max-height: 92%;
+  aspect-ratio: 1;
+}
+
+.delphic-back__music-link {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  height: 22cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: clamp(1.041rem, 7.84cqi, 1.525rem);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  white-space: nowrap;
+  color: #1a1512;
+  text-transform: uppercase;
+}
+
+.delphic-back__intro {
+  flex: 0 0 auto;
+  margin: 4.5% auto 0;
+  width: 78%;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: clamp(0.7rem, 3.72cqi, 0.94rem);
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  opacity: 0.9;
+  /* 仅视觉上移贴近二维码，不挤动分割线与社媒 */
+  transform: translateY(-4.5rem);
 }
 
 .delphic-back__rule {
-  width: 96%;
-  height: 2px;
-  margin: 0 auto;
-  background: var(--rule);
+  flex: 0 0 auto;
+  width: 78%;
+  height: 1px;
+  margin: 4% auto 0;
+  background: color-mix(in srgb, var(--rule) 70%, transparent);
   border: none;
 }
 
-.delphic-back__cta {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 3%;
-  width: 100%;
+/*
+ * W 型单行：高-低-高-低；低位两项用相同 rem 下沉，上边缘对齐。
+ * ICON 文件统一 24×24，界面同一尺寸。
+ */
+.delphic-back__socials {
+  flex: 0 0 auto;
+  list-style: none;
+  margin: 4.5% auto 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 78%;
   min-height: 0;
-  padding: 0 1.5% 1.5%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.45em;
   container-type: inline-size;
 }
 
-.delphic-back__socials {
-  flex: 1;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.delphic-back__social {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.55em;
-  min-width: 0;
+  align-items: center;
+  gap: 0.45em;
+  text-align: center;
 }
 
-.delphic-back__social {
-  display: flex;
-  align-items: center;
-  gap: 0.55em;
-  min-width: 0;
+/* 低位：小红书、邮箱 — 同一下沉量，保证上边缘齐平 */
+.delphic-back__social:nth-child(2),
+.delphic-back__social:nth-child(4) {
+  margin-top: 1.75rem;
 }
 
 .delphic-back__social-icon {
   flex: 0 0 auto;
   display: block;
-  width: clamp(1.1rem, 5.5cqi, 1.55rem);
-  height: clamp(1.1rem, 5.5cqi, 1.55rem);
+  width: clamp(1.55rem, 9.5cqi, 2.35rem);
+  height: clamp(1.55rem, 9.5cqi, 2.35rem);
   background-color: var(--ink);
   mask-size: contain;
   mask-repeat: no-repeat;
@@ -203,25 +332,28 @@
   -webkit-mask-position: center;
 }
 
-.delphic-back__social-id {
-  margin: 0;
-  min-width: 0;
-  font-family: var(--font-handwriting);
-  font-weight: 400;
-  font-size: clamp(0.85rem, 4.2cqi, 1.2rem);
-  line-height: 1.2;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.delphic-back__social-icon--xiaohongshu {
+  width: clamp(1.95rem, 12cqi, 2.95rem);
+  height: clamp(1.95rem, 12cqi, 2.95rem);
 }
 
-.delphic-back__qr {
-  flex: 0 0 auto;
-  width: clamp(9rem, 64cqi, 15rem);
-  aspect-ratio: 1;
-  padding: 0;
-  background: transparent;
-  border: none;
-  align-self: flex-end;
+.delphic-back__social-id {
+  margin: 0;
+  max-width: 100%;
+  font-family: var(--font-handwriting);
+  font-weight: 400;
+  font-size: clamp(0.605rem, 3.41cqi, 0.891rem);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+.delphic-back__social-id--email {
+  font-size: clamp(0.605rem, 3.41cqi, 0.891rem);
+  letter-spacing: 0.02em;
+  white-space: normal;
+  line-height: 1.3;
 }
