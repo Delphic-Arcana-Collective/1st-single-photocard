@@ -18,10 +18,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="zh-CN" className={`${hand.variable} h-full`}>
       <head>
-        {/* 霞鹜文楷：端正、略带手写感，补中文；Apple 上优先 Hannotate SC */}
+        {/* 霞鹜文楷：端正、略带手写感，补中文；Apple 上优先 Hannotate SC
+            crossOrigin so html-to-image can read cssRules (avoids SecurityError). */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css"
+          crossOrigin="anonymous"
         />
       </head>
       <body className={`${hand.className} min-h-full antialiased`}>
