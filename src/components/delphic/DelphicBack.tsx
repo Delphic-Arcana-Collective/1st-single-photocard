@@ -1,20 +1,20 @@
 import { QRCodeSVG } from "qrcode.react";
 
-export const DELPHIC_QQ_LINK = "https://qm.qq.com/q/aKFEQOR6OQ";
+export const DELPHIC_QQ_LINK = "https://music.163.com/#/song?id=3413721307&uct2=U2FsdGVkX1/7SGMThjdbjzQ5/b33M+rcEroAilVAqxE=";
 
 /** 浅色羊皮纸上的码点：黑色 */
 const QR_INK = "#1a1512";
 
 /**
- * 两端尖尖 + 三座陡峰；谷底压低，落差更陡。
+ * 两端尖尖 + 两座尖峰；压缩器式音头——攻放都陡、峰体收窄。
  */
 const WAVE_LEFT = [
-  2, 6, 18, 48, 88, 100, 52, 12, 4, 28, 72, 100, 68, 16, 5, 32, 78, 100, 70,
-  28, 10, 4, 2,
+  6, 7, 9, 12, 16, 22, 48, 92, 100, 58, 22, 12, 10, 14, 20, 42, 88, 100, 62,
+  24, 14, 10, 8, 6,
 ];
 const WAVE_RIGHT = [
-  2, 4, 10, 28, 70, 100, 78, 32, 5, 16, 68, 100, 72, 28, 4, 12, 52, 100, 88,
-  48, 18, 6, 2,
+  6, 8, 10, 14, 24, 62, 100, 88, 42, 20, 14, 10, 12, 22, 58, 100, 92, 48, 22,
+  16, 12, 9, 7, 6,
 ];
 
 export const SOCIAL_ACCOUNTS = [
@@ -52,7 +52,7 @@ function TrackWaveform({
   side: "left" | "right";
 }) {
   const n = samples.length;
-  /** 竖线略加密，仍保持疏朗 */
+  /** 竖线略疏，尖端仍可见 */
   const gap = 2.15;
   const barW = (100 - gap * (n - 1)) / n;
 
@@ -64,7 +64,7 @@ function TrackWaveform({
       aria-hidden
     >
       {samples.map((amp, i) => {
-        const h = Math.max(1.2, (amp / 100) * 38);
+        const h = Math.max(2.4, (amp / 100) * 38);
         const x = i * (barW + gap);
         const y = (40 - h) / 2;
         return (

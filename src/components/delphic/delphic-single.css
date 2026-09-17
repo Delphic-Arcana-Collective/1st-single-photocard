@@ -248,7 +248,7 @@
   justify-content: center;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(1.041rem, 7.84cqi, 1.525rem);
+  font-size: clamp(1.145rem, 8.62cqi, 1.678rem);
   letter-spacing: 0.08em;
   line-height: 1;
   white-space: nowrap;
@@ -337,6 +337,11 @@
   height: clamp(1.95rem, 12cqi, 2.95rem);
 }
 
+/* 仅下移图标上沿与小红书对齐；transform 不挤动下方文字 */
+.delphic-back__social-icon--email {
+  transform: translateY(0.4rem);
+}
+
 .delphic-back__social-id {
   margin: 0;
   max-width: 100%;
@@ -352,7 +357,7 @@
 }
 
 .delphic-back__social-id--email {
-  font-size: clamp(0.605rem, 3.41cqi, 0.891rem);
+  font-size: clamp(0.635rem, 3.58cqi, 0.936rem);
   letter-spacing: 0.02em;
   white-space: normal;
   line-height: 1.3;
