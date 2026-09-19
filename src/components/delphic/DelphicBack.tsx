@@ -118,10 +118,16 @@ export default function DelphicBack() {
         </div>
       </div>
 
-      <p className="delphic-back__intro">
-        有没有一种可能？在某条世界线里易者的复活赛打赢了？然后它逃到了外界开了一家塔罗摊子呢？
-        什么？我打灵梦？会赢吗？会的！
-      </p>
+      {/*
+        Fixed-height slot: keeps QR / rule / socials proportions stable.
+        Intro copy is absolutely positioned inside and never grows the flex layout.
+      */}
+      <div className="delphic-back__intro-slot">
+        <p className="delphic-back__intro">
+          有没有一种可能？在某条世界线里易者的复活赛打赢了？然后它逃到了外界开了一家塔罗摊子呢？
+          什么？我打灵梦？会赢吗？会的！
+        </p>
+      </div>
 
       <div className="delphic-back__rule" aria-hidden />
 

@@ -98,6 +98,7 @@
 
 /* ===== Back ===== */
 .delphic-back {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -256,10 +257,29 @@
   text-transform: uppercase;
 }
 
-.delphic-back__intro {
+/*
+ * Reserved band between QR stage and rule. Height is fixed so intro line-wrap
+ * never squeezes the QR cluster or the rule / social icons.
+ */
+.delphic-back__intro-slot {
+  position: relative;
   flex: 0 0 auto;
+  width: 100%;
+  /* Match prior flow height (~3 lines) so QR / rule spacing stays put */
+  height: clamp(4.2rem, 15cqh, 5.4rem);
   margin: 4.5% auto 0;
-  width: 78%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.delphic-back__intro {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin: 0;
+  /* Desktop: narrower column → more lines; layout height stays on the slot */
+  width: 56%;
+  max-width: 56%;
   padding: 0;
   box-sizing: border-box;
   text-align: center;
@@ -269,8 +289,33 @@
   letter-spacing: 0.04em;
   line-height: 1.55;
   opacity: 0.9;
-  /* 仅视觉上移贴近二维码，不挤动分割线与社媒 */
-  transform: translateY(-4.5rem);
+  /* Lift toward QR without affecting flex siblings */
+  transform: translate(-50%, -4.5rem);
+}
+
+/*
+ * Phone / narrow card: keep QR + rule + icons fixed; drop the copy into the
+ * reserved band (centered) so it covers neither the QR nor the rule/icons.
+ */
+@container (max-width: 380px) {
+  .delphic-back__intro {
+    top: 50%;
+    width: 76%;
+    max-width: 76%;
+    font-size: clamp(0.64rem, 3.35cqi, 0.84rem);
+    line-height: 1.45;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@container (max-width: 320px) {
+  .delphic-back__intro {
+    width: 82%;
+    max-width: 82%;
+    font-size: clamp(0.58rem, 3.15cqi, 0.78rem);
+    line-height: 1.4;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .delphic-back__rule {
