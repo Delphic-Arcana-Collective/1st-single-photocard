@@ -293,6 +293,14 @@
   transform: translate(-50%, -4.5rem);
 }
 
+.delphic-back__intro p {
+  margin: 0;
+}
+
+.delphic-back__intro p + p {
+  margin-top: 0.55em;
+}
+
 /*
  * Phone / narrow card: keep QR + rule + icons fixed; drop the copy into the
  * reserved band (centered) so it covers neither the QR nor the rule/icons.
@@ -305,6 +313,10 @@
     font-size: clamp(0.64rem, 3.35cqi, 0.84rem);
     line-height: 1.45;
     transform: translate(-50%, -50%);
+  }
+
+  .delphic-back__intro p + p {
+    margin-top: 0.4em;
   }
 }
 
