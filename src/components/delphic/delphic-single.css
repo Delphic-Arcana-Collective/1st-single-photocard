@@ -299,7 +299,7 @@
  */
 @container (max-width: 380px) {
   .delphic-back__intro {
-    top: 50%;
+    top: 58%;
     width: 76%;
     max-width: 76%;
     font-size: clamp(0.64rem, 3.35cqi, 0.84rem);
@@ -310,6 +310,7 @@
 
 @container (max-width: 320px) {
   .delphic-back__intro {
+    top: 60%;
     width: 82%;
     max-width: 82%;
     font-size: clamp(0.58rem, 3.15cqi, 0.78rem);
