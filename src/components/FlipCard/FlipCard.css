@@ -1,13 +1,39 @@
 .flip-card {
-  /* A8: 52 × 74 mm */
-  width: min(88vw, calc(92vh * 52 / 74));
+  /* A8: 52 × 74 mm — size from viewport while leaving room for page chrome */
+  --flip-chrome-y: 6.5rem;
+  width: min(
+    88vw,
+    calc((100dvh - var(--flip-chrome-y)) * 52 / 74),
+    28rem
+  );
+  max-width: 100%;
+  height: auto;
   perspective: 1600px;
   border: none;
   padding: 0;
   background: transparent;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
   container-type: inline-size;
+}
+
+@media (max-width: 640px) {
+  .flip-card {
+    --flip-chrome-y: 7.25rem;
+    width: min(
+      94vw,
+      calc((100dvh - var(--flip-chrome-y)) * 52 / 74),
+      24rem
+    );
+  }
+}
+
+@media (max-width: 380px) {
+  .flip-card {
+    --flip-chrome-y: 7.75rem;
+    width: min(96vw, calc((100dvh - var(--flip-chrome-y)) * 52 / 74));
+  }
 }
 
 .flip-card__inner {
