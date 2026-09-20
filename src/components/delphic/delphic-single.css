@@ -280,7 +280,7 @@
   position: relative;
   flex: 0 0 auto;
   width: 100%;
-  /* Match prior flow height (~3 lines) so QR / rule spacing stays put */
+  /* Match prior flow height so QR / rule spacing stays put */
   height: clamp(4.2rem, 15cqh, 5.4rem);
   margin: 4.5% auto 0;
   pointer-events: none;
@@ -290,7 +290,9 @@
 .delphic-back__intro {
   position: absolute;
   left: 50%;
-  top: 0;
+  /* Pin to the bottom of the reserved band — clear of QR, above the rule */
+  top: auto;
+  bottom: 0;
   margin: 0;
   /* Desktop: narrower column → more lines; layout height stays on the slot */
   width: 56%;
@@ -300,12 +302,12 @@
   text-align: center;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(0.7rem, 3.72cqi, 0.94rem);
+  font-size: clamp(0.66rem, 3.4cqi, 0.86rem);
   letter-spacing: 0.04em;
-  line-height: 1.55;
+  line-height: 1.45;
   opacity: 0.9;
-  /* Lift toward QR without affecting flex siblings */
-  transform: translate(-50%, -4.5rem);
+  /* Horizontal center only — do NOT lift into the QR */
+  transform: translateX(-50%);
 }
 
 .delphic-back__intro p {
@@ -313,36 +315,21 @@
 }
 
 .delphic-back__intro p + p {
-  margin-top: 0.55em;
+  margin-top: 0.5em;
 }
 
 /*
- * Phone / narrow card: keep QR + rule + icons fixed; drop the copy into the
- * reserved band (centered) so it covers neither the QR nor the rule/icons.
+ * Phone / narrow card: keep QR + rule + icons fixed; keep copy inside the
+ * reserved band (slightly lower) so it covers neither the QR nor the rule.
  */
 @container (max-width: 420px) {
   .delphic-back__intro {
-    top: 42%;
+    bottom: 0;
     width: 68%;
     max-width: 68%;
-    font-size: clamp(0.66rem, 3.5cqi, 0.88rem);
-    line-height: 1.48;
-    transform: translate(-50%, -50%);
-  }
-
-  .delphic-back__intro p + p {
-    margin-top: 0.45em;
-  }
-}
-
-@container (max-width: 380px) {
-  .delphic-back__intro {
-    top: 58%;
-    width: 76%;
-    max-width: 76%;
-    font-size: clamp(0.64rem, 3.35cqi, 0.84rem);
-    line-height: 1.45;
-    transform: translate(-50%, -50%);
+    font-size: clamp(0.62rem, 3.3cqi, 0.82rem);
+    line-height: 1.4;
+    transform: translateX(-50%);
   }
 
   .delphic-back__intro p + p {
@@ -350,14 +337,21 @@
   }
 }
 
+@container (max-width: 380px) {
+  .delphic-back__intro {
+    width: 76%;
+    max-width: 76%;
+    font-size: clamp(0.6rem, 3.2cqi, 0.8rem);
+    line-height: 1.38;
+  }
+}
+
 @container (max-width: 320px) {
   .delphic-back__intro {
-    top: 60%;
     width: 82%;
     max-width: 82%;
-    font-size: clamp(0.58rem, 3.15cqi, 0.78rem);
-    line-height: 1.4;
-    transform: translate(-50%, -50%);
+    font-size: clamp(0.55rem, 3.05cqi, 0.74rem);
+    line-height: 1.35;
   }
 }
 
