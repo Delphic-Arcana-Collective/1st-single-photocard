@@ -1,10 +1,11 @@
 .flip-card {
-  /* A8: 52 × 74 mm — size from viewport while leaving room for page chrome */
-  --flip-chrome-y: 6.5rem;
+  /* A8: 52 × 74 mm. 150% browser zoom is the tuned size: the 28rem cap
+     drops out and the card fills the viewport. Match that painted size at 100%. */
+  --flip-chrome-y: 9.75rem;
   width: min(
     88vw,
     calc((100dvh - var(--flip-chrome-y)) * 52 / 74),
-    28rem
+    42rem
   );
   max-width: 100%;
   height: auto;
@@ -20,18 +21,18 @@
 
 @media (max-width: 640px) {
   .flip-card {
-    --flip-chrome-y: 7.25rem;
+    --flip-chrome-y: 10.875rem;
     width: min(
       94vw,
       calc((100dvh - var(--flip-chrome-y)) * 52 / 74),
-      24rem
+      36rem
     );
   }
 }
 
 @media (max-width: 380px) {
   .flip-card {
-    --flip-chrome-y: 7.75rem;
+    --flip-chrome-y: 11.625rem;
     width: min(96vw, calc((100dvh - var(--flip-chrome-y)) * 52 / 74));
   }
 }
@@ -53,7 +54,7 @@
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 0.35rem;
+  border-radius: 0.525rem;
   background-color: var(--card-bg, #1a1512);
   background-image: var(--card-bg-image);
   background-size: 105%;

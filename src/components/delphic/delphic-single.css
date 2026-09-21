@@ -43,7 +43,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.35em;
+  gap: 0.525em;
   width: 100%;
   margin-top: 1.5%;
   padding: 0 0 3.5%;
@@ -77,16 +77,16 @@
   gap: 0.55em;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(0.62rem, 2.8cqi, 0.95rem);
+  font-size: clamp(0.93rem, 2.8cqi, 1.425rem);
   letter-spacing: 0.04em;
   line-height: 1.2;
   white-space: nowrap;
 }
 
-@container (max-width: 280px) {
+@container (max-width: 420px) {
   .delphic-front__label {
     width: 78%;
-    font-size: clamp(0.55rem, 2.6cqi, 0.8rem);
+    font-size: clamp(0.825rem, 2.6cqi, 1.2rem);
     letter-spacing: 0.02em;
   }
 }
@@ -94,7 +94,7 @@
 .delphic-front__label-rule {
   flex: 1 1 auto;
   height: 1.5px;
-  min-width: 0.75rem;
+  min-width: 1.125rem;
   background: var(--ink);
 }
 
@@ -132,7 +132,7 @@
   margin: 0;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(2.2rem, 12cqi, 3.1rem);
+  font-size: clamp(3.3rem, 12cqi, 4.65rem);
   letter-spacing: 0.12em;
   line-height: 1.2;
 }
@@ -141,15 +141,15 @@
   margin: 0.4em 0 0;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(1rem, 5.4cqi, 1.4rem);
+  font-size: clamp(1.5rem, 5.4cqi, 2.1rem);
   letter-spacing: 0.04em;
   line-height: 1.35;
   opacity: 0.82;
 }
 
-@container (max-width: 320px) {
+@container (max-width: 480px) {
   .delphic-back__original {
-    font-size: clamp(0.78rem, 4.6cqi, 1.05rem);
+    font-size: clamp(1.17rem, 4.6cqi, 1.575rem);
     letter-spacing: 0.02em;
   }
 }
@@ -182,7 +182,7 @@
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  height: clamp(3.25rem, 14cqw, 5.75rem);
+  height: clamp(4.875rem, 14cqw, 8.625rem);
   color: var(--qr-accent);
   pointer-events: none;
   overflow: visible;
@@ -217,7 +217,7 @@
   container-type: inline-size;
   box-shadow:
     inset 0 0 0 1px rgba(255, 235, 200, 0.12),
-    0 0.3em 0.85em rgba(0, 0, 0, 0.35);
+    0 0.45em 1.275em rgba(0, 0, 0, 0.35);
   overflow: hidden;
 }
 
@@ -264,7 +264,7 @@
   justify-content: center;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(1.145rem, 8.62cqi, 1.678rem);
+  font-size: clamp(1.7175rem, 8.62cqi, 2.517rem);
   letter-spacing: 0.08em;
   line-height: 1;
   white-space: nowrap;
@@ -282,7 +282,7 @@
   width: 100%;
   /* Match prior flow height so QR / rule spacing stays put */
   /* 高度锁死，和改文案之前同一条，避免挤动二维码 */
-  height: clamp(4.2rem, 15cqh, 5.4rem);
+  height: clamp(6.3rem, 15cqh, 8.1rem);
   margin: 4.5% auto 0;
   overflow: visible;
   pointer-events: none;
@@ -304,12 +304,12 @@
   text-align: center;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(0.66rem, 3.4cqi, 0.86rem);
+  font-size: clamp(0.99rem, 3.4cqi, 1.29rem);
   letter-spacing: 0.12em;
   line-height: 1.34;
   opacity: 0.9;
   /* 只挪字块，不改变槽高，二维码高度不动 */
-  transform: translateY(-0.55rem);
+  transform: translateY(-0.825rem);
 }
 
 .delphic-back__intro p {
@@ -321,23 +321,23 @@
   margin-top: 0.16em;
 }
 
-@container (max-width: 420px) {
+@container (max-width: 630px) {
   .delphic-back__intro {
-    font-size: clamp(0.62rem, 3.3cqi, 0.82rem);
+    font-size: clamp(0.93rem, 3.3cqi, 1.23rem);
     line-height: 1.3;
   }
 }
 
-@container (max-width: 380px) {
+@container (max-width: 570px) {
   .delphic-back__intro {
-    font-size: clamp(0.6rem, 3.2cqi, 0.8rem);
+    font-size: clamp(0.9rem, 3.2cqi, 1.2rem);
     line-height: 1.28;
   }
 }
 
-@container (max-width: 320px) {
+@container (max-width: 480px) {
   .delphic-back__intro {
-    font-size: clamp(0.55rem, 3.05cqi, 0.74rem);
+    font-size: clamp(0.825rem, 3.05cqi, 1.11rem);
     line-height: 1.24;
   }
 }
@@ -367,7 +367,7 @@
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.45em;
+  gap: 0.675em;
   container-type: inline-size;
 }
 
@@ -377,21 +377,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.45em;
+  gap: 0.675em;
   text-align: center;
 }
 
 /* 低位 W 型：小红书、邮箱 — 同一下沉量，上边缘齐平 */
 .delphic-back__social:nth-child(2),
 .delphic-back__social:nth-child(4) {
-  margin-top: 1.75rem;
+  margin-top: 2.625rem;
 }
 
 .delphic-back__social-icon {
   flex: 0 0 auto;
   display: block;
-  width: clamp(1.55rem, 9.5cqi, 2.35rem);
-  height: clamp(1.55rem, 9.5cqi, 2.35rem);
+  width: clamp(2.325rem, 9.5cqi, 3.525rem);
+  height: clamp(2.325rem, 9.5cqi, 3.525rem);
   background-color: var(--ink);
   mask-size: contain;
   mask-repeat: no-repeat;
@@ -402,15 +402,15 @@
 }
 
 .delphic-back__social-icon--xiaohongshu {
-  width: clamp(1.95rem, 12cqi, 2.95rem);
-  height: clamp(1.95rem, 12cqi, 2.95rem);
+  width: clamp(2.925rem, 12cqi, 4.425rem);
+  height: clamp(2.925rem, 12cqi, 4.425rem);
   /* 仅图标上移，下方文字不动 */
-  transform: translateY(0.1rem);
+  transform: translateY(0.15rem);
 }
 
 /* 仅下移图标上沿与小红书对齐；transform 不挤动下方文字 */
 .delphic-back__social-icon--email {
-  transform: translateY(0.4rem);
+  transform: translateY(0.6rem);
 }
 
 .delphic-back__social-id {
@@ -418,7 +418,7 @@
   max-width: 100%;
   font-family: var(--font-handwriting);
   font-weight: 400;
-  font-size: clamp(0.605rem, 3.41cqi, 0.891rem);
+  font-size: clamp(0.9075rem, 3.41cqi, 1.3365rem);
   line-height: 1.25;
   letter-spacing: 0.02em;
   overflow-wrap: break-word;
@@ -428,13 +428,13 @@
 }
 
 .delphic-back__social-id--email {
-  font-size: clamp(0.635rem, 3.58cqi, 0.936rem);
+  font-size: clamp(0.9525rem, 3.58cqi, 1.404rem);
   letter-spacing: 0.02em;
   white-space: normal;
   line-height: 1.3;
 }
 
-@container (max-width: 320px) {
+@container (max-width: 480px) {
   .delphic-back__socials {
     width: 88%;
     gap: 0.3em;
@@ -442,10 +442,10 @@
 
   .delphic-back__social:nth-child(2),
   .delphic-back__social:nth-child(4) {
-    margin-top: 1.25rem;
+    margin-top: 1.875rem;
   }
 
   .delphic-back__social-id {
-    font-size: clamp(0.5rem, 3.1cqi, 0.75rem);
+    font-size: clamp(0.75rem, 3.1cqi, 1.125rem);
   }
 }
