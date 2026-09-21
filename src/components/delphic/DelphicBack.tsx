@@ -124,10 +124,11 @@ export default function DelphicBack() {
       */}
       <div className="delphic-back__intro-slot">
         <div className="delphic-back__intro">
-          <p>
-            有没有一种可能？在某条世界线里易者的复活赛打赢了？然后它逃到了外界开了一家塔罗摊子呢？
-          </p>
-          <p>什么？我打灵梦？会赢吗？会的！</p>
+          <p>塔罗的占卜、</p>
+          <p>音乐的旋律、</p>
+          <p>东方的幻梦，</p>
+          <p>三者交汇之处，</p>
+          <p>就是我们。</p>
         </div>
       </div>
 

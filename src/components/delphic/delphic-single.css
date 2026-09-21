@@ -281,77 +281,64 @@
   flex: 0 0 auto;
   width: 100%;
   /* Match prior flow height so QR / rule spacing stays put */
+  /* 高度锁死，和改文案之前同一条，避免挤动二维码 */
   height: clamp(4.2rem, 15cqh, 5.4rem);
   margin: 4.5% auto 0;
+  overflow: visible;
   pointer-events: none;
   z-index: 2;
 }
 
 .delphic-back__intro {
   position: absolute;
-  left: 50%;
-  /* Pin to the bottom of the reserved band — clear of QR, above the rule */
-  top: auto;
-  bottom: 0;
+  inset: 0;
   margin: 0;
-  /* Desktop: narrower column → more lines; layout height stays on the slot */
-  width: 56%;
-  max-width: 56%;
-  padding: 0;
+  width: 100%;
+  max-width: none;
+  padding: 0 8%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-family: var(--font-handwriting);
   font-weight: 400;
   font-size: clamp(0.66rem, 3.4cqi, 0.86rem);
-  letter-spacing: 0.04em;
-  line-height: 1.45;
+  letter-spacing: 0.12em;
+  line-height: 1.34;
   opacity: 0.9;
-  /* Horizontal center only — do NOT lift into the QR */
-  transform: translateX(-50%);
+  /* 只挪字块，不改变槽高，二维码高度不动 */
+  transform: translateY(-0.55rem);
 }
 
 .delphic-back__intro p {
   margin: 0;
+  white-space: nowrap;
 }
 
 .delphic-back__intro p + p {
-  margin-top: 0.5em;
+  margin-top: 0.16em;
 }
 
-/*
- * Phone / narrow card: keep QR + rule + icons fixed; keep copy inside the
- * reserved band (slightly lower) so it covers neither the QR nor the rule.
- */
 @container (max-width: 420px) {
   .delphic-back__intro {
-    bottom: 0;
-    width: 68%;
-    max-width: 68%;
     font-size: clamp(0.62rem, 3.3cqi, 0.82rem);
-    line-height: 1.4;
-    transform: translateX(-50%);
-  }
-
-  .delphic-back__intro p + p {
-    margin-top: 0.4em;
+    line-height: 1.3;
   }
 }
 
 @container (max-width: 380px) {
   .delphic-back__intro {
-    width: 76%;
-    max-width: 76%;
     font-size: clamp(0.6rem, 3.2cqi, 0.8rem);
-    line-height: 1.38;
+    line-height: 1.28;
   }
 }
 
 @container (max-width: 320px) {
   .delphic-back__intro {
-    width: 82%;
-    max-width: 82%;
     font-size: clamp(0.55rem, 3.05cqi, 0.74rem);
-    line-height: 1.35;
+    line-height: 1.24;
   }
 }
 
@@ -394,7 +381,7 @@
   text-align: center;
 }
 
-/* 低位：小红书、邮箱 — 同一下沉量，保证上边缘齐平 */
+/* 低位 W 型：小红书、邮箱 — 同一下沉量，上边缘齐平 */
 .delphic-back__social:nth-child(2),
 .delphic-back__social:nth-child(4) {
   margin-top: 1.75rem;
@@ -417,6 +404,8 @@
 .delphic-back__social-icon--xiaohongshu {
   width: clamp(1.95rem, 12cqi, 2.95rem);
   height: clamp(1.95rem, 12cqi, 2.95rem);
+  /* 仅图标上移，下方文字不动 */
+  transform: translateY(0.1rem);
 }
 
 /* 仅下移图标上沿与小红书对齐；transform 不挤动下方文字 */
