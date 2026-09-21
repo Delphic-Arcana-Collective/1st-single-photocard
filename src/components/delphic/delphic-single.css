@@ -427,11 +427,17 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.delphic-back__social-id--email,
+.delphic-back__social-id--netease {
+  letter-spacing: 0.02em;
+  /* 指定换行后的每一行不再拆开，允许略超出本列 */
+  white-space: nowrap;
+  max-width: none;
+  line-height: 1.3;
+}
+
 .delphic-back__social-id--email {
   font-size: clamp(0.9525rem, 3.58cqi, 1.404rem);
-  letter-spacing: 0.02em;
-  white-space: normal;
-  line-height: 1.3;
 }
 
 @container (max-width: 480px) {

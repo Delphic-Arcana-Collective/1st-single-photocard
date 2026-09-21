@@ -124,11 +124,8 @@ export default function DelphicBack() {
       */}
       <div className="delphic-back__intro-slot">
         <div className="delphic-back__intro">
-          <p>塔罗的占卜、</p>
-          <p>音乐的旋律、</p>
-          <p>东方的幻梦，</p>
-          <p>三者交汇之处，</p>
-          <p>就是我们。</p>
+          <p>塔罗的占卜、音乐的旋律、东方的幻梦，</p>
+          <p>三者交汇之处，就是我们。</p>
         </div>
       </div>
 
@@ -154,6 +151,12 @@ export default function DelphicBack() {
                   contact
                   <br />
                   @delphic.studio
+                </>
+              ) : item.id === "netease" ? (
+                <>
+                  Delphic Arcana
+                  <br />
+                  Collective
                 </>
               ) : (
                 item.account
