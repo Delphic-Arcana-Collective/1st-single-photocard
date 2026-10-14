@@ -1,32 +1,19 @@
 import { getFontEmbedCSS, toPng } from "html-to-image";
 
-/** A8 photocard short edge (mm). Used to target print DPI. */
+/** A8 photocard dimensions (mm). Fixed export size for consistent print output. */
 const A8_WIDTH_MM = 52;
+const A8_HEIGHT_MM = 74;
 /** High-fidelity print target (300 is standard; 600 is archive/print crisp). */
 const TARGET_PRINT_DPI = 600;
-const MIN_PIXEL_RATIO = 3;
-/** Stay under typical browser canvas dimension limits (~16384). */
-const MAX_PIXEL_RATIO = 6;
-
-function resolvePixelRatio(cssWidth: number, requested?: number): number {
-  if (requested != null && requested > 0) return requested;
-  const targetPx = (A8_WIDTH_MM / 25.4) * TARGET_PRINT_DPI;
-  return Math.min(
-    MAX_PIXEL_RATIO,
-    Math.max(MIN_PIXEL_RATIO, Math.ceil(targetPx / Math.max(cssWidth, 1))),
-  );
-}
 
 /**
- * Prefer the A8 `.flip-card` box (has aspect-ratio). Face nodes are
- * `position:absolute; inset:0` and distort if cloned without locked size.
+ * Calculate fixed A8 export dimensions at target print DPI.
+ * Returns pixel dimensions that remain constant regardless of browser zoom or viewport size.
  */
-function measureExportBox(node: HTMLElement): { width: number; height: number } {
-  const card = node.closest(".flip-card") as HTMLElement | null;
-  const rect = (card ?? node).getBoundingClientRect();
+function getExportDimensions(): { width: number; height: number } {
   return {
-    width: Math.max(1, Math.round(rect.width)),
-    height: Math.max(1, Math.round(rect.height)),
+    width: Math.round((A8_WIDTH_MM / 25.4) * TARGET_PRINT_DPI),
+    height: Math.round((A8_HEIGHT_MM / 25.4) * TARGET_PRINT_DPI),
   };
 }
 
@@ -63,10 +50,8 @@ async function withQuietedCssRulesErrors<T>(fn: () => Promise<T>): Promise<T> {
 export async function exportElementPng(
   node: HTMLElement,
   filename: string,
-  options?: { pixelRatio?: number },
 ) {
-  const { width, height } = measureExportBox(node);
-  const pixelRatio = resolvePixelRatio(width, options?.pixelRatio);
+  const { width, height } = getExportDimensions();
 
   // Pre-embed fonts, then skipFonts so toPng does not re-walk document.styleSheets.
   const dataUrl = await withQuietedCssRulesErrors(async () => {
@@ -75,7 +60,7 @@ export async function exportElementPng(
       cacheBust: true,
       width,
       height,
-      pixelRatio,
+      pixelRatio: 1,
       skipAutoScale: true,
       skipFonts: true,
       fontEmbedCSS,
